@@ -1,38 +1,135 @@
 <!DOCTYPE html>
 <html>
-    
-    <head>
-        <meta charset="utf-8">
-        <title>😂 Tyler's Personal Site</title>
-        <link rel="stylesheet" href="css/styles.css">   
-    </head>
-    <header>
-        <h1>Tyler's Personal Site</h1>
-    </header>
-    <body >
-             
-        <hr>
-        <table style="text-align: center; margin: auto" >
-             <tr>
-                <td>
-                    <img src="doge.png"  style="margin-right: 25px">
-                </td>
-                <td>
-                    <table>
-                        <tr>
-                            <h1>Tyler Bare</h1>
-                        </tr>
-                        <tr>
-                            <h3>tylerbare98@gmail.com</h3>
-                        </tr>
-                        <tr>
-                            <h3><a href="resume.html"> My Resume</a></h3>
-                        </tr>
-                    </table>
-                </td>
-
-            </tr>
-        </table>
-        <hr>
-    </body>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Tyler Bare
+  </title>
+  <link href="css/styles.css" rel="stylesheet"/>
+  <link href="images/favicon.ico" rel="icon"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Montserrat&amp;family=Sacramento&amp;display=swap" rel="stylesheet"/>
+ </head>
+ <!-- --------------------------- BODY ------------------------------------------------>
+ <body>
+  <!-- --------------------------- TOP Container ----------------------------------->
+  <div id="top-container">
+   <img alt="cloud-img" id="topCloud" src="images/cloud.png"/>
+   <h1 class="title">
+    I'm Tyler
+   </h1>
+   <h2>
+    A Software Engineer
+   </h2>
+   <img alt="cloud-img" id="bottomCloud" src="images/cloud.png"/>
+   <img alt="mountain-img" id="mountain" src="images/mountain.png"/>
+  </div>
+  <!-- --------------------------- Middle Container ----------------------------------->
+  <div class="middle-container">
+   <div class="profile">
+    <img alt="ProfilePic" id="circleProfilePic" src="images/ProfilePic.jpg"/>
+    <h1 style="font-size:60px; margin-bottom: 25px">
+     Hello
+    </h1>
+    <p id="intro">
+     Hello, I'm a Software Engineer. I love dogecoin
+     <span class="ticker">
+      <span data-ticker="DOGE/USD">
+       <a class="percentColor" href="https://www.benzinga.com/quote/doge/usd" rel="noopener noreferrer" style="color:green" target="_blank">
+        <span value="2.1727">
+         <svg aria-hidden="true" class="percentTriangle" fill="currentColor" height="20" style="transform: rotate(0deg)" width="20">
+          <path d="M 10,1 19,19.5 1,19.5 z">
+          </path>
+         </svg>
+        </span>
+        <span>
+         DOGE/USD
+        </span>
+        <span class="percentChange">
+         + 5.449%
+        </span>
+       </a>
+      </span>
+     </span>
+     This ticker actually works but my Python script is not live on the backend. Here is 
+                    a link to:
+     <a href="resume.html" id="resumeA" target="_blank">
+      My Resume
+     </a>
+    </p>
+   </div>
+   <hr/>
+   <div id="aboutMe">
+    <h1 style="font-size:60px; margin-bottom: 25px">
+     About Me
+    </h1>
+    <div class="aboutMeRow">
+     <img alt="ProjectPic" id="projectsImage" src="images/project.png"/>
+     <h3>
+      Personal Projects
+     </h3>
+     <p>
+      Here's a link to a Dice Game I built:
+      <a href="DiceGame-Bootstrap.html" id="resumeA" target="_blank">
+       Dice Game.
+      </a>
+      It incorporates BOOT STRAP GRID SYSTEM to make it responsive. 
+     </p>
+    </div>
+    <div class="aboutMeRow">
+     <img alt="TravelPic" id="travelImage" src="images/travel.png"/>
+     <h3>
+      Traveling
+     </h3>
+     <p>
+      dfgdfg fdg   fdg fdg  fgfddg  gfgfdgd  fgfg ser  
+      <a href="DrumKit.html" id="resumeA" target="_blank">
+       Blah Blah
+      </a>
+      It's fdg fdgdfsg  gfdgsdgf dfgdfg gfd gdfg fdg gfdsgdsfg fdgdfg  fd fdf d fdg.
+    </div>
+   </div>
+   <hr/>
+   <div id="contact">
+    <h1 style="font-size:60px; margin-bottom: 25px">
+     Get In Touch
+    </h1>
+    <h3>
+     Interested in working together?
+    </h3>
+    <p id="outro">
+     Let's talk about it; or about some other opportunities. We can achieve great things together!
+    </p>
+    <a class="btn" href="mailto:tylerbare98@gmail.com">
+     CONTACT ME
+    </a>
+   </div>
+  </div>
+  <!-- --------------------------- Bottom Container ----------------------------------->
+  <div id="bottom-container">
+   <a class="footer-link" href="https://www.linkedin.com/">
+    GitHub
+   </a>
+   <a class="footer-link" href="https://www.youtube.com/channel/UCngARttZOo0OsWJZdXWpQyQ">
+    YouTube
+   </a>
+   <a class="footer-link" href="resume.html">
+    Resume
+   </a>
+   <br/>
+   <a class="citations" href="https://www.flaticon.com/free-icons/rolling-machine" title="rolling machine icons">
+    Rolling machine icons created by Freepik - Flaticon
+   </a>
+   <br/>
+   <a class="citations" href="https://www.flaticon.com/free-icons/travel" title="travel icons">
+    Travel icons created by Icon Pond - Flaticon
+   </a>
+   <p id="copyright">
+    Tyler Bare
+   </p>
+  </div>
+  <script src="dogeTicker.py">
+  </script>
+ </body>
 </html>
