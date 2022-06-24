@@ -3,17 +3,27 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <link href="css/styles.css" rel="stylesheet"/>
         <link href="images/favicon.ico" rel="icon"/>
         <link href="https://fonts.googleapis.com/css2?family=Merriweather&amp;family=Montserrat&amp;family=Sacramento&amp;display=swap" rel="stylesheet"/>
         <title>Dice Game</title>
     </head>
-    <body>
-        <div id="dice-container-top">
-            <h1 class ="title" id="dice-title">Get Ready</h1>
-            <button id="btnListener" class="btn dice-button">
+    <body id="bird-background">
+<!------------------------------------------- bird Game  -------------------------------------------------------->
+        <div id="dice-container-top" style>
+            <h1 class ="title" id="dice-title" style="padding-top:0px; text-decoration:underline">Bird Game</h1>
+            <button id="birdListener" class="btn dice-button">
+                Start Game
+            </button>
+            <div id="test">
+
+            </div>
+        </div>
+<!------------------------------------------- DICE GAME -------------------------------------------------------->
+        <div id="dice-container-middle">
+            <h1 class ="title" id="dice-title" style="text-decoration:underline">Dice Game</h1>
+            <button id="diceListener" class="btn dice-button">
                 ROLL DICE
             </button>
             <div class="container">
@@ -33,10 +43,11 @@
                 </div>
             </div>
         </div>
-        <div id="dice-container-middle">
 
-        </div>
-        <div id="dice-container-bottom">
+<!-------------------------------------------- ExtraSpace ------------------------------------------------------->
+        <div id="dice-container-bottom"></div>
+<!------------------------------------------- FOOTER -------------------------------------------------------->
+        <div id="dice-container-footer">
             <a class="footer-link" href="https://www.linkedin.com/">
                 GitHub
             </a>
@@ -54,6 +65,8 @@
                 Tyler Bare
             </p>
         </div>
+        <!------------------- scripts ------------------------------>
         <script src="JS/diceScript.js" type="module"></script>
+        <script src="JS/wallBallScript.js" type="module"></script>
     </body>
 </html>
