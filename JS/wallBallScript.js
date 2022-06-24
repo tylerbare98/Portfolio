@@ -1,5 +1,5 @@
 //draw canvas and start game when the "start game" button is clicked
-document.getElementById("birdListener").addEventListener("click", main);
+document.getElementById("wallBallListener").addEventListener("click", main);
 
 
 var gamePieces = [];
@@ -121,7 +121,18 @@ function BallComponent(radius, color, x, y)
         //check for left of canvas
         var left = (this.radius);                             
             if(this.x < left)
+            {
                 alert("you lose");
+                gameArea.clearBall();
+                gameArea.clearPaddle();
+                //This code will clear all intervals and reset canvas
+                const interval_id = window.setInterval(function(){}, Number.MAX_SAFE_INTEGER);
+                for (let i = 1; i < 200; i++) 
+                {
+                    window.clearInterval(i);
+                }
+            }
+                
     }
 
     //method to draw ball in new location
