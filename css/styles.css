@@ -130,12 +130,8 @@ p{
 }
 
 /****************************************** ID SELECTORS ***************************/
-#bird-background{
+#wall-ball-background{
     background-color: #E4F9F5;
-}
-
-#bird-canvas{
-    border:1px solid #000000;
 }
 
 #dice-title{
