@@ -130,6 +130,13 @@ p{
 }
 
 /****************************************** ID SELECTORS ***************************/
+#bird-background{
+    background-color: #E4F9F5;
+}
+
+#bird-canvas{
+    border:1px solid #000000;
+}
 
 #dice-title{
     margin-bottom: 70px;
@@ -137,17 +144,21 @@ p{
 
 #dice-container-top {
     background-color: #E4F9F5;
-    padding-top: 60px;
+    padding-top: 40px;
 
 }
 
 #dice-container-middle {
     background-color: #E4F9F5;
-    padding-top: 60px;
-    height:550px;
+    padding-top: 40px
 }
 
 #dice-container-bottom{
+    background-color: E4F9F5;
+    height: 350px;
+}
+
+#dice-container-footer{
     background-color: #66BFBF;
     padding-top: 10px;
     padding-bottom: 10px;
