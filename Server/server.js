@@ -4,7 +4,7 @@ const app = express();
 
 //when we get a browser GET request
 app.get("/", function(req, res){
-    res.sendFile(__dirname + ../index.html)
+    res.sendFile("/workspace/Website/index.html")
 })
 
 app.listen(3000, function(){
