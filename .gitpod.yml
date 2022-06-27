@@ -1,4 +1,4 @@
-# List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
+
 tasks:
   - init: npm 'install' # runs during prebuild
     command: npm run dev
@@ -7,3 +7,10 @@ tasks:
 ports:
   - port: 3000
     onOpen: open-preview
+
+vscode:
+  extensions:
+    - ms-azuretools.vscode-docker
+    - pranaygp.vscode-css-peek
+    - abusaidm.html-snippets
+    - ritwickdey.LiveServer
