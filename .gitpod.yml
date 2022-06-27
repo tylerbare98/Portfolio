@@ -2,7 +2,6 @@
 tasks:
   - init: npm 'install' # init runs during prebuild / this install node.js and npm
   - init: npm install express
-  - init: npm install -g nodemon
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
