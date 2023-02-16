@@ -104,7 +104,7 @@ p{
     padding: 0 10px 0 10px;
 }
 
-a > .footer-link{
+a.footer-link{
     color:white;
 }
 
