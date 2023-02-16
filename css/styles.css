@@ -10,7 +10,8 @@ h1{
     color: #66BFBF;
     font-size: 90px;
     margin-bottom: 0;
-    font-family: 'Montserrat', sans-serif
+    font-family: 'Montserrat', sans-serif;
+    text-align:center;
 }
 
 h2{
@@ -27,7 +28,6 @@ h3{
 }
 
 hr{
-    border-style: dotted;
     border-width: 10px;
     border-top: none;
     width: 5%;
