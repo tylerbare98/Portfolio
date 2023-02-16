@@ -7,7 +7,6 @@ body{
 }
 
 h1{
-    border-style: none dotted dotted;
     color: #66BFBF;
     font-size: 90px;
     margin-bottom: 0;
@@ -29,6 +28,7 @@ h3{
 }
 
 hr{
+    border-style: none dotted dotted;
     border-width: 10px;
     border-top: none;
     width: 5%;
