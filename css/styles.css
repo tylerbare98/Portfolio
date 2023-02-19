@@ -183,6 +183,8 @@ a.footer-link{
 #top-container{
     background-color: #E4F9F5;
     margin-bottom: 100px;
+    overflow:hidden;
+    width:100%
 }
 
 #bottom-container{
@@ -195,7 +197,7 @@ a.footer-link{
     position: relative;
     right: 0;
     top: 20px;
-    animation: topCloud-animation 10s linear infinite;
+    animation: topCloud-animation 11s linear infinite;
   }
   
   @keyframes topCloud-animation {
@@ -218,7 +220,7 @@ a.footer-link{
     transform: translateX(-50vw);
   }
   100% {
-    transform: translateX(55vw);
+    transform: translateX(60vw);
   }
 }
 
