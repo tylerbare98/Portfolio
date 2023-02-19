@@ -191,10 +191,10 @@ a.footer-link{
     padding-bottom: 10px;
 }
 
-#cloud {
+#topCloud {
   position: absolute;
-  right: -100px;
-  top: 50px;
+  right: 300px;
+  top: 40px;
   animation: cloud1 20s linear infinite;
 }
 
