@@ -195,7 +195,7 @@ a.footer-link{
     position: relative;
     right: 0;
     top: 20px;
-    animation: topCloud-animation 8s linear infinite;
+    animation: topCloud-animation 10s linear infinite;
   }
   
   @keyframes topCloud-animation {
