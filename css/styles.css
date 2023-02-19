@@ -191,11 +191,23 @@ a.footer-link{
     padding-bottom: 10px;
 }
 
-#topCloud{
-    position:relative;
-    left:300px;
-    top:40px;
+#cloud {
+  position: absolute;
+  right: -100px;
+  top: 50px;
+  animation: cloud1 20s linear infinite;
 }
+
+@keyframes cloud1 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-2000px);
+  }
+}
+
+
 
 #bottomCloud{
     position:absolute;
