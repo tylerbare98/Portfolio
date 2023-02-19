@@ -192,34 +192,35 @@ a.footer-link{
 }
 
 #topCloud {
-  position: absolute;
-  right: 300px;
-  top: 40px;
-  animation: cloud1 20s linear infinite;
-}
-
-@keyframes cloud1 {
-  0% {
-    transform: translateX(0);
+    position: relative;
+    right: 0;
+    top: 20px;
+    animation: topCloud-animation 6s linear infinite;
   }
-  100% {
-    transform: translateX(-2000px);
-  }
+  
+  @keyframes topCloud-animation {
+    0% {
+      transform: translateX(50vw);
+    }
+    100% {
+      transform: translateX(-55vw);
+    }
 }
-
-
 
 #bottomCloud{
-    position:absolute;
-    left: 180px;
-    top:200px
+    position:relative;
+    left: 0;
+    top:20px;
+    animation: bottomCloud-animation 13s linear infinite;
 }
-@media (max-width: 1100px) {
-    /* styles to apply when screen size is 1100px or less */
-    #bottomCloud {
-      left: 50px;
-    }
+@keyframes bottomCloud-animation {
+  0% {
+    transform: translateX(-50vw);
   }
+  100% {
+    transform: translateX(55vw);
+  }
+}
 
 #mountain{
     display:block;
