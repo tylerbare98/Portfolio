@@ -24,8 +24,8 @@ var gameArea =
         this.canvas.height = 270;
         this.context = this.canvas.getContext("2d");
 
-        //add canvas before middle container
-        const div = document.getElementById("dice-container-middle");
+        //add canvas before React projects section
+        const div = document.getElementById("aboutMe");
         document.body.insertBefore(this.canvas, div);
 
         //style canvas

@@ -183,6 +183,8 @@ a.footer-link{
 #top-container{
     background-color: #E4F9F5;
     margin-bottom: 100px;
+    overflow:hidden;
+    width:100%
 }
 
 #bottom-container{
