@@ -28,13 +28,10 @@ h3{
 }
 
 hr{
-    border-style: none dotted dotted;
-    border-width: 10px;
-    border-top: none;
-    width: 5%;
-    border-color: #d1d4d4;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    border: none;
+    border-top: 1px solid #d1d4d4;
+    width: 80%;
+    margin: 50px auto;
 }
 
 a{
