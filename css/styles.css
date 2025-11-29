@@ -61,7 +61,7 @@ p{
 }
 @media (max-width: 950px) {
     .aboutMeRow {
-      width: 90%;
+      width: 75%;
     }
   }
 
@@ -214,9 +214,9 @@ a.footer-link{
 
 #mountain{
     display:block;
-    padding-left: 150px;
-    margin:0 auto 0 auto;
-    width:80%;
+    margin:0 auto;
+    width:100%;
+    max-width: 1400px;
     height: 500px;
     object-fit: cover;
     object-position: center center;
