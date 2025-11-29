@@ -215,24 +215,30 @@ a.footer-link{
 #mountain{
     display:block;
     padding-left: 150px;
-    margin:200px auto 0 auto;
+    margin:0 auto 0 auto;
     width:80%;
+    height: 500px;
+    object-fit: cover;
+    object-position: center center;
 }
 
 #circleProfilePic{
     border-radius: 50%;
+    border: 3px solid black;
 }
 
-#projectsImage{
+#weatherImage{
     float: left;
     margin-right: 30px;
-
+    width: 150px;
+    height: 150px;
 }
 
-#travelImage{
+#agileImage{
     float: right;
     margin-left: 30px;
-
+    width: 150px;
+    height: 150px;
 }
 
 #intro{
