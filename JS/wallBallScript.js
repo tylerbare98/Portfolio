@@ -1,253 +1,74 @@
-//draw canvas and start game when the "start game" button is clicked
-document.getElementById("wallBallListener").addEventListener("click", main);
-
-
-var gamePieces = [];
-var paddle;
-
-/*** MAIN METHOD ***/
-function main() 
-{
-    gameArea.start();
-    spawnComponents();
-}
- 
-/************************************************   GAME AREA  ***************************************************/
-//create canvas object
-var gameArea = 
-{
-    canvas : document.createElement("canvas"),
-    start : function() 
-    {
-        //set canvas size
-        this.canvas.width = 480;
-        this.canvas.height = 270;
-        this.context = this.canvas.getContext("2d");
-
-        //add canvas before React projects section
-        const div = document.getElementById("aboutMe");
-        document.body.insertBefore(this.canvas, div);
-
-        //style canvas
-        this.canvas.style.border = `1px solid #000000`;
-        this.canvas.style.background = "white";
-        this.canvas.id="canvas";
-
-        //obviously this listen for keyboard input
-        document.addEventListener('keydown', (event) => 
-        {
-            gameArea.keyDown = event.key;
-            event.preventDefault()
-        }, false);
-
-    },
-    //this function clears the previous ball location
-    clearBall : function() 
-    {
-        this.context.clearRect(20, 0, this.canvas.width, this.canvas.height);
-    },
-
-    //this function clears the previous paddle location
-    clearPaddle : function() 
-    {
-        this.context.clearRect(0, 0, 20, this.canvas.height);
+(() => {
+  const canvas = document.querySelector('#canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const start = document.querySelector('#wallBallListener');
+  const pause = document.querySelector('#game-pause');
+  const status = document.querySelector('#game-status');
+  const scoreLabel = document.querySelector('#game-score');
+  const w = canvas.width, h = canvas.height;
+  const paddle = { x: 14, y: h / 2 - 45, width: 12, height: 90 };
+  const ball = { x: w / 2, y: h / 2, vx: -260, vy: 110, radius: 7 };
+  const keys = new Set();
+  let running = false, paused = false, score = 0, best = 0, frame = 0, last = 0;
+  try { best = Math.max(0, Number(localStorage.getItem('wallBallBest')) || 0); } catch {}
+  const clamp = y => Math.max(0, Math.min(h - paddle.height, y));
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.strokeStyle = '#dfebe4'; ctx.setLineDash([4, 9]); ctx.beginPath(); ctx.moveTo(w / 2, 0); ctx.lineTo(w / 2, h); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = '#27786d'; ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+    ctx.fillStyle = '#b95b82'; ctx.beginPath(); ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2); ctx.fill();
+    scoreLabel.textContent = `Score: ${score} · Best: ${best}`;
+  }
+  function stop() {
+    running = false; cancelAnimationFrame(frame); pause.disabled = true;
+    start.textContent = 'Play again'; status.textContent = `Game over. Score: ${score}. Ready for another round?`; keys.clear(); draw();
+  }
+  function tick(time) {
+    if (!running || paused) return;
+    const dt = Math.min((time - last) / 1000 || 0, .035); last = time;
+    if (keys.has('ArrowUp')) paddle.y = clamp(paddle.y - 360 * dt);
+    if (keys.has('ArrowDown')) paddle.y = clamp(paddle.y + 360 * dt);
+    const previousX = ball.x; ball.x += ball.vx * dt; ball.y += ball.vy * dt;
+    if (ball.y < ball.radius) {ball.y = ball.radius; ball.vy = Math.abs(ball.vy);}
+    if (ball.y > h - ball.radius) {ball.y = h - ball.radius; ball.vy = -Math.abs(ball.vy);}
+    if (ball.x > w - ball.radius) {ball.x = w - ball.radius; ball.vx = -Math.abs(ball.vx);}
+    const edge = paddle.x + paddle.width;
+    if (ball.vx < 0 && previousX - ball.radius >= edge && ball.x - ball.radius <= edge && ball.y + ball.radius >= paddle.y && ball.y - ball.radius <= paddle.y + paddle.height) {
+      ball.x = edge + ball.radius; ball.vx = Math.min(470, Math.abs(ball.vx) + 12);
+      ball.vy = ((ball.y - paddle.y - paddle.height / 2) / (paddle.height / 2)) * 240;
+      score++; best = Math.max(best, score);
+      try {localStorage.setItem('wallBallBest', String(best));} catch {}
     }
-}
-
-/************************************************   BALL  ***************************************************/
-//function component(width, height, color, x, y) { //this is for a sqaure
-function BallComponent(radius, color, x, y) 
-{ 
-    this.radius = radius;
-    this.x = x;
-    this.y = y;
-    this.speedX = 5;
-    this.speedY = 5;
-    this.color = color;
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-
-    //variables for the ball's trail
-    var motionTrailLength = 10;
-    var positions = [];
-
-    //this function gets called ever 20ms for each ball
-    this.updateBallLocation = function()
-    {
-        gameArea.clearBall();           //clears previous location of ball
-        gamePieces[0].makeTrail();      //makes ball's trail
-        gamePieces[0].setPosition();    //sets new position of ball
-        gamePieces[0].hitEdge();        //check to see if ball hit canvas side
-        gamePieces[0].drawGamePiece();  //draws new ball
-        storeLastPosition(gamePieces[0].x, gamePieces[0].y); //stores last poition of the ball in array for ball's trail
-    }
-
-    //makes ball's trail
-    this.makeTrail = function()
-    {
-        //for every "ball location" in array, print it out with a faded color
-        for (var i = 0; i < positions.length; i++) 
-        {
-            var ratio = (i + 1) / positions.length;
-            ctx.beginPath();
-            ctx.arc(positions[i].x, positions[i].y, radius, 0, 2 * Math.PI); //x,y,radius,startAngle,endAngle
-            ctx.fillStyle = "rgba(204, 102, 153, " + ratio / 2 + ")";
-            ctx.fill();
-        }
-    }
-
-    //sets new position of ball
-    this.setPosition = function()
-    {
-        gamePieces[0].x += this.speedX;
-        gamePieces[0].y += this.speedY;
-    }
-
-    //check to see if ball hit canvas side
-    this.hitEdge = function()
-    {
-        //check for bottom of canvas
-        var bottom = gameArea.canvas.height - (this.radius); 
-        if(this.y > bottom)         
-            this.speedY *= -1;
-        //check for top of canvas
-        var top = (this.radius);                             
-        if(this.y < top)
-            this.speedY *= -1;
-        //check for right of canvas
-        var right = gameArea.canvas.width - (this.radius);                             
-            if(this.x > right)
-                this.speedX *= -1;
-        //check for left of canvas
-        var left = (this.radius);                             
-            if(this.x < left)
-            {
-                alert("you lose");
-                gameArea.clearBall();
-                gameArea.clearPaddle();
-                //This code will clear all intervals and reset canvas
-                const interval_id = window.setInterval(function(){}, Number.MAX_SAFE_INTEGER);
-                for (let i = 1; i < 200; i++) 
-                {
-                    window.clearInterval(i);
-                }
-            }
-                
-    }
-
-    //method to draw ball in new location
-    this.drawGamePiece = function()
-    {
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(this.x,this.y, this.radius,0,2*Math.PI); //x,y,radius,startAngle,endAngle
-        ctx.fill();
-    }  
-    
-    //stores last poition of the ball in array for ball's trail
-    function storeLastPosition(xPos, yPos) 
-    {
-        //push an item
-        positions.push(
-            {
-                x: xPos,
-                y: yPos
-            });
-    
-        //get rid of first item
-        if (positions.length > motionTrailLength)
-        {
-            positions.shift();
-        }
-    }
-}
-
-
-/************************************************   PADDLE  ***************************************************/
-function PaddleComponent(width, height, color) 
-{ 
-    this.height = height;
-    this.width = width;
-    this.x = 5;
-    this.y = gameArea.canvas.height / 2 - this.height / 2; //so paddle spawn centered
-    this.speedX = 0;
-    this.speedY = 0;
-    this.color = color;
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-
-    //this function gets called ever 20ms
-    this.updatePaddleLocation = function()
-    {
-        gameArea.clearPaddle();             //clears previous location of paddle
-        paddle.hitPaddle(gamePieces[0]);    //checks if the ball hit the paddle
-        paddle.setPaddlePosition();         //sets new position of paddle
-        paddle.drawPaddle();                //draws new paddle  
-    }
-
-    //checks if the ball hit the paddle, if so it redirects it at calculated angle
-    this.hitPaddle = function(ball)
-    {
-        //paddle variables
-        var paddleHitX = this.x + (this.width);
-        var paddleTop = this.y;
-        var paddleBottom = this.y + (this.height);
-        //ball variables
-        var ballHitX = ball.x;
-        var ballHitY = ball.y + (ball.radius);
-
-        //if hitPaddle, then redirect ball with higher angle furthure from paddle middle
-        if(paddleHitX == ballHitX  && (ballHitY > paddleTop - 15 && ballHitY < paddleBottom + 15)) 
-        {
-            ball.speedX *= -1;
-            var relativeYIntersect = (paddle.y + (paddle.height/2)) - ballHitY;
-            ball.speedY = relativeYIntersect / 3 * -1;
-        }
-    }
-
-    //sets new position of paddle based on keyboard input
-    this.setPaddlePosition = function()
-    {
-            if(gameArea.keyDown === "ArrowUp")
-            {
-                var top = 0                               
-                if(this.y > top)
-                    this.y -= 20; 
-                gameArea.keyDown=null;
-            }
-            if(gameArea.keyDown === "ArrowDown")
-            {
-                var bottom = gameArea.canvas.height
-                if(this.y < gameArea.canvas.height - paddle.height)  
-                    this.y += 20;       
-                gameArea.keyDown=null;
-            }
-    }
-
-    //draws new paddle
-    this.drawPaddle = function()
-    {
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
-}
-
-/************************************************   SPAWNING  ***************************************************/
-//This function is where all the balls will be spawned
-function spawnComponents()
-{
-    //This code will clear all intervals so that each time the "Start Game" button is pressed the balls sppeed doesn't exponentially grow
-    const interval_id = window.setInterval(function(){}, Number.MAX_SAFE_INTEGER);
-    for (let i = 1; i < 200; i++) 
-    {
-        window.clearInterval(i);
-    }
-
-    //creates new ball(s) 
-    gamePieces[0] = new BallComponent(5, "black", 50, 50); 
-    gamePieces[0].interval = setInterval(gamePieces[0].updateBallLocation, 20); 
-
-    //creates paddle
-    paddle = new PaddleComponent(15, 75, "#66BFBF");
-    paddle.interval = setInterval(paddle.updatePaddleLocation, 20);
-}
+    if (ball.x < -ball.radius) {stop(); return;}
+    draw(); frame = requestAnimationFrame(tick);
+  }
+  function togglePause() {
+    if (!running) return;
+    paused = !paused; keys.clear(); pause.textContent = paused ? 'Resume' : 'Pause';
+    status.textContent = paused ? 'Paused. Resume when you are ready.' : 'Keep the ball in play!';
+    cancelAnimationFrame(frame);
+    if (!paused) {last = performance.now(); frame = requestAnimationFrame(tick);}
+  }
+  start.addEventListener('click', () => {
+    cancelAnimationFrame(frame); score = 0; paddle.y = h / 2 - paddle.height / 2;
+    Object.assign(ball, {x: w / 2, y: h / 2, vx: -260, vy: 110});
+    running = true; paused = false; keys.clear(); last = performance.now();
+    start.textContent = 'Restart'; pause.textContent = 'Pause'; pause.disabled = false;
+    status.textContent = 'Keep the ball in play!'; canvas.focus(); draw(); frame = requestAnimationFrame(tick);
+  });
+  pause.addEventListener('click', togglePause);
+  canvas.addEventListener('keydown', e => {
+    if (['ArrowUp', 'ArrowDown', ' '].includes(e.key)) {e.preventDefault(); if(e.key === ' ') {if(!e.repeat) togglePause();} else keys.add(e.key);}
+  });
+  canvas.addEventListener('keyup', e => keys.delete(e.key));
+  canvas.addEventListener('blur', () => keys.clear());
+  window.addEventListener('blur', () => {if(running && !paused) togglePause();});
+  canvas.addEventListener('pointermove', e => {
+    if (!running || paused) return;
+    const rect = canvas.getBoundingClientRect(); paddle.y = clamp((e.clientY - rect.top) * h / rect.height - paddle.height / 2);
+  });
+  canvas.addEventListener('pointerdown', e => {canvas.focus(); canvas.setPointerCapture(e.pointerId);});
+  document.addEventListener('visibilitychange', () => {if(document.hidden && running && !paused) togglePause();});
+  draw();
+})();

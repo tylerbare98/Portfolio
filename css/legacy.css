@@ -1,0 +1,276 @@
+/****************************************** TAG SELECTORS ***************************/
+body{
+    margin: 0;
+    text-align: center;
+    font-family: 'Merriweather', serif;
+    color: #40514E;
+}
+
+h1{
+    color: #66BFBF;
+    font-size: 90px;
+    margin-bottom: 0;
+    font-family: 'Montserrat', sans-serif;
+    text-align:center;
+}
+
+h2{
+    color: #66BFBF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    padding: bottom 10px;
+}
+
+h3{
+    color: #66BFBF;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+}
+
+hr{
+    border: none;
+    border-top: 1px solid #d1d4d4;
+    width: 80%;
+    margin: 50px auto;
+}
+
+a{
+    color: #11999E;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline
+}
+
+p{
+    overflow: hidden;
+    line-height: 2;
+}
+
+/****************************************** CLASS SELECTORS ***************************/
+
+.citations{
+    font-size: 8px;
+}
+
+.aboutMeRow{
+    text-align: left;
+    width:40%;
+    margin: 100px auto 100px auto;
+}
+@media (max-width: 950px) {
+    .aboutMeRow {
+      width: 75%;
+    }
+  }
+
+.btn {
+    background: #11cdd4;
+    background-image: -webkit-linear-gradient(top, #11cdd4, #11999e);
+    background-image: -moz-linear-gradient(top, #11cdd4, #11999e);
+    background-image: -ms-linear-gradient(top, #11cdd4, #11999e);
+    background-image: -o-linear-gradient(top, #11cdd4, #11999e);
+    background-image: linear-gradient(to bottom, #11cdd4, #11999e);
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    font-size: 20px;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+  }
+
+.btn:hover {
+    background: #30e3cb;
+    background-image: -webkit-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -moz-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -ms-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: -o-linear-gradient(top, #30e3cb, #2bc4ad);
+    background-image: linear-gradient(to bottom, #30e3cb, #2bc4ad);
+    text-decoration: none;
+  }
+
+a.footer-link{
+    color:white;
+}
+
+.footer-link{
+    margin: 0 20px 0 20px;
+}
+
+.title{
+
+    font-family: 'Sacramento', cursive;
+    font-weight: bold;
+}
+
+.dice-section{
+ margin: 15px auto 15px auto;
+}
+
+.dice-text{
+    text-decoration:underline;
+}
+
+.dice-button{
+    margin-bottom:50px
+}
+
+.dice-rounded-edges{
+    border-radius: 20px;
+}
+
+/****************************************** ID SELECTORS ***************************/
+#wall-ball-background{
+    background-color: #E4F9F5;
+}
+
+#dice-title{
+    margin-bottom: 70px;
+}
+
+#dice-container-top {
+    background-color: #E4F9F5;
+    padding-top: 40px;
+
+}
+
+#dice-container-middle {
+    background-color: #E4F9F5;
+    padding-top: 40px
+}
+
+#dice-container-bottom{
+    background-color: E4F9F5;
+    height: 350px;
+}
+
+#dice-container-footer{
+    background-color: #66BFBF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#blue{
+    background-color: #11cdd4;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+    border-radius: 250px;
+}
+
+#red{
+    background-color: palevioletred;
+    height: 100px;
+    width: 100px;
+    display: inline-block;
+}
+
+#top-container{
+    background-color: #E4F9F5;
+    margin-bottom: 100px;
+    overflow:hidden;
+    width:100%
+}
+
+#bottom-container{
+    background-color: #66BFBF;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#topCloud {
+    position: relative;
+    right: 0;
+    top: 20px;
+    animation: topCloud-animation 11s linear infinite;
+  }
+
+  @keyframes topCloud-animation {
+    0% {
+      transform: translateX(50vw);
+    }
+    100% {
+      transform: translateX(-55vw);
+    }
+}
+
+#bottomCloud{
+    position:relative;
+    left: 0;
+    top:20px;
+    animation: bottomCloud-animation 15s linear infinite;
+}
+@keyframes bottomCloud-animation {
+  0% {
+    transform: translateX(-50vw);
+  }
+  100% {
+    transform: translateX(60vw);
+  }
+}
+
+#mountain{
+    display:block;
+    margin:0 auto;
+    width:100%;
+    max-width: 1400px;
+    height: 500px;
+    object-fit: cover;
+    object-position: center center;
+}
+
+#circleProfilePic{
+    border-radius: 50%;
+    border: 3px solid black;
+}
+
+#weatherImage{
+    float: left;
+    margin-right: 30px;
+    width: 150px;
+    height: 150px;
+}
+
+#agileImage{
+    float: right;
+    margin-left: 30px;
+    width: 150px;
+    height: 150px;
+}
+
+#intro{
+    width:50%;
+    margin: auto
+}
+
+#outro{
+    margin: 30px auto 50px auto
+}
+
+#contact{
+    width: 40%;
+    margin: 40px auto 60px auto;
+}
+@media (max-width: 950px) {
+    #contact {
+      width: 90%;
+    }
+  }
+
+#copyright{
+    margin-bottom: 0;
+    margin-top: 0;
+    color: #EAF6F6;
+    font-size:12px;
+}
+
+#resumeA{
+    margin-left:0
+}
+
+#resumeA:hover{
+    color: black;
+}
